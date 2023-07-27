@@ -14,6 +14,12 @@ const addTasks = (task) => {
   const deleteBtn = document.createElement('button');
   deleteBtn.innerHTML = '削除';
   showItem.appendChild(deleteBtn);
+
+  // タスクを削除
+  deleteBtn.addEventListener('click', (event) => {
+    event.preventDefault();
+    event.target.parentNode.remove();
+  });
 };
 
 // タスクを追加
