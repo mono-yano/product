@@ -10,6 +10,10 @@ const addTasks = (task) => {
   const showItem = taskList.appendChild(listItem);
   showItem.innerHTML = task;
 
+  // タスクを削除するボタンを作成
+  const deleteBtn = document.createElement('button');
+  deleteBtn.innerHTML = '削除';
+  showItem.appendChild(deleteBtn);
 };
 
 // タスクを追加
