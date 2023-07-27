@@ -18,3 +18,7 @@
 .header__title {
   color: #2f4f4f;
 }
+
+.main-container {
+  padding-block: 32px;
+}
