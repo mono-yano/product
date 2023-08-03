@@ -2,64 +2,67 @@ const inputValue = document.getElementById('taskInput');
 const submitBtn = document.getElementById('submitBtn');
 const taskList = document.getElementById('taskList');
 
-// ページ読み込み時に保存されたタスクを表示
-window.addEventListener('load', () => {
-  const savedTaskList = localStorage.getItem('taskList');
-  if (savedTaskList) {
-    const taskListArray = JSON.parse(savedTaskList);
-    taskListArray.forEach(taskItem => {
-      addTasks(taskItem.task);
-    });
-  }
-});
+// DOM要素を作成して返す関数
+const createElement = (tagName, className = '') => {
+  const element = document.createElement(tagName);
+  element.className = className;
+  return element;
+};
 
 // タスクを保存する関数
 const saveTasks = () => {
-  const taskList = document.querySelectorAll('.list-type-01__item span');
-
-  // 各タスクのテキストを格納する配列
-  let taskListArray = [];
-  // 各タスクのテキストをオブジェクトとして格納
-  taskList.forEach((task) => {
-    const taskItem = {
-      'task': task.textContent
-    };
-    taskListArray.push(taskItem);
-  });
-
-  // タスクリストをJSON文字列に変換してローカルストレージに保存
+  const taskElements = document.querySelectorAll('.list-type-01__item span');
+  // タスクの配列を作成
+  const taskListArray = Array.from(taskElements).map(taskElement => ({
+    task: taskElement.textContent
+  }));
+  // 配列をJSON文字列に変換して保存
   const taskListString = JSON.stringify(taskListArray);
   localStorage.setItem('taskList', taskListString);
 };
 
-// タスクを追加する関数
-const addTasks = (task) => {
-  // タスクを表示する要素を作成
-  const listItem = document.createElement('li');
-  listItem.className = 'list-type-01__item';
-  const listText = document.createElement('span');
-  const showItem = taskList.appendChild(listItem).appendChild(listText);
-  showItem.innerHTML = task;
+// タスクを追加して保存する関数
+const addAndSaveTask = (task) => {
+  // タスクを表示
+  const listItem = createElement('li', 'list-type-01__item');
+  const listText = createElement('span');
+  listText.innerHTML = task;
 
-  // タスクを削除するボタンを作成
-  const deleteBtn = document.createElement('button');
+  // 削除ボタンを作成
+  const deleteBtn = createElement('button');
   deleteBtn.innerHTML = '削除';
-  listItem.appendChild(deleteBtn);
-
-  // タスクを削除
+  // 削除ボタンを押したときの処理
   deleteBtn.addEventListener('click', (event) => {
-    event.preventDefault();
-    event.target.parentNode.remove();
+    event.preventDefault(); // ボタンのデフォルトの挙動をキャンセル
+    event.target.parentNode.remove(); // 削除ボタンの親要素を削除
+
+    saveTasks();
   });
+
+  listItem.appendChild(listText);
+  listItem.appendChild(deleteBtn);
+  taskList.appendChild(listItem);
+
+  saveTasks();
 };
+
+// ページ読み込み時に保存されたタスクを表示
+window.addEventListener('load', () => {
+  const savedTaskList = localStorage.getItem('taskList');
+  // 保存されたタスクがあれば表示
+  if (savedTaskList) {
+    const taskListArray = JSON.parse(savedTaskList); // JSON文字列を配列に変換
+    // 配列の要素ごとにタスクを追加
+    taskListArray.forEach(taskItem => {
+      addAndSaveTask(taskItem.task);
+    });
+  }
+});
 
 // タスクを追加
 submitBtn.addEventListener('click', (event) => {
-  event.preventDefault();
+  event.preventDefault(); // ボタンのデフォルトの挙動をキャンセル
   const task = inputValue.value;
-  addTasks(task);
-  inputValue.value = '';
-
-  // タスクが追加された後にタスクを保存
-  saveTasks();
+  addAndSaveTask(task);
+  inputValue.value = ''; // 入力欄を空にする
 });
