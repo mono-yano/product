@@ -4,6 +4,15 @@
 */
 *,*::before,*::after{box-sizing:border-box}*{margin:0}body{line-height:1.5;-webkit-font-smoothing:antialiased}img,picture,video,canvas,svg{display:block;max-width:100%}input,button,textarea,select{font:inherit}p,h1,h2,h3,h4,h5,h6{overflow-wrap:break-word}#root,#__next{isolation:isolate}
 
+body {
+  font-family: Arial,Helvetica,'Noto Sans JP', sans-serif,'Helvetica Neue','Hiragino Kaku Gothic ProN','Hiragino Sans',sans-serif;
+}
+
+.mt-1 { margin-top: 0.5rem;} /*  8px */
+.mt-2 { margin-top: 1rem;}   /* 16px */
+.mt-3 { margin-top: 1.5rem;} /* 24px */
+.mt-4 { margin-top: 2rem;}   /* 32px */
+
 .l-innner {
   max-width: 800px;
   margin: 0 auto;
@@ -17,8 +26,29 @@
 
 .header__title {
   color: #2f4f4f;
+  font-size: 2.5rem;
 }
 
 .main-container {
   padding-block: 32px;
+}
+
+/* list-type-01 */
+.list-type-01 {
+  margin-top: 1rem;
+  list-style-type: '・';
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-inline: 12px;
+}
+
+.list-type-01__item {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.list-type-01__btn {
+
 }

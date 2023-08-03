@@ -7,13 +7,15 @@ const taskList = document.getElementById('taskList');
 const addTasks = (task) => {
   // タスクを表示する要素を作成
   const listItem = document.createElement('li');
-  const showItem = taskList.appendChild(listItem);
+  listItem.className = 'list-type-01__item';
+  const listText = document.createElement('span');
+  const showItem = taskList.appendChild(listItem).appendChild(listText);
   showItem.innerHTML = task;
 
   // タスクを削除するボタンを作成
   const deleteBtn = document.createElement('button');
   deleteBtn.innerHTML = '削除';
-  showItem.appendChild(deleteBtn);
+  listItem.appendChild(deleteBtn);
 
   // タスクを削除
   deleteBtn.addEventListener('click', (event) => {
