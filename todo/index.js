@@ -2,6 +2,35 @@ const inputValue = document.getElementById('taskInput');
 const submitBtn = document.getElementById('submitBtn');
 const taskList = document.getElementById('taskList');
 
+// ページ読み込み時に保存されたタスクを表示
+window.addEventListener('load', () => {
+  const savedTaskList = localStorage.getItem('taskList');
+  if (savedTaskList) {
+    const taskListArray = JSON.parse(savedTaskList);
+    taskListArray.forEach(taskItem => {
+      addTasks(taskItem.task);
+    });
+  }
+});
+
+// タスクを保存する関数
+const saveTasks = () => {
+  const taskList = document.querySelectorAll('.list-type-01__item span');
+
+  // 各タスクのテキストを格納する配列
+  let taskListArray = [];
+  // 各タスクのテキストをオブジェクトとして格納
+  taskList.forEach((task) => {
+    const taskItem = {
+      'task': task.textContent
+    };
+    taskListArray.push(taskItem);
+  });
+
+  // タスクリストをJSON文字列に変換してローカルストレージに保存
+  const taskListString = JSON.stringify(taskListArray);
+  localStorage.setItem('taskList', taskListString);
+};
 
 // タスクを追加する関数
 const addTasks = (task) => {
@@ -30,4 +59,7 @@ submitBtn.addEventListener('click', (event) => {
   const task = inputValue.value;
   addTasks(task);
   inputValue.value = '';
+
+  // タスクが追加された後にタスクを保存
+  saveTasks();
 });
