@@ -6,6 +6,8 @@
 
 body {
   font-family: Arial,Helvetica,'Noto Sans JP', sans-serif,'Helvetica Neue','Hiragino Kaku Gothic ProN','Hiragino Sans',sans-serif;
+  background-color: #ebf6f7;
+  color: #2f4f4f;
 }
 
 .mt-1 { margin-top: 0.5rem;} /*  8px */
@@ -20,17 +22,32 @@ body {
 }
 
 .header {
-  background-color: #40e0d0;
+  background-color: #83ccd2;
   padding-block: 12px;
 }
 
 .header__title {
-  color: #2f4f4f;
   font-size: 2.5rem;
 }
 
 .main-container {
   padding-block: 32px;
+}
+
+/* todo-form */
+.todo-form__input {
+  width: 360px;
+  border: 2px solid #716246;
+  border-radius: 4px;
+  padding: 1px 8px;
+}
+
+.todo-form__button {
+  background: #f5deb3;
+  border-radius: 4px;
+  border: 2px solid #b98c46;
+  color: #715c1f;
+  font-weight: bold;
 }
 
 /* list-type-01 */
@@ -45,10 +62,38 @@ body {
 
 .list-type-01__item {
   display: flex;
+  width: fit-content;
   gap: 8px;
   align-items: center;
 }
 
-.list-type-01__btn {
+.list-type-01__text {
+  display: inline-flex;
+  flex-direction: column;
+  position: relative;
+  padding: 4px 2px;
+}
 
+.list-type-01__text::after {
+  position: absolute;
+  bottom: 0;
+  background: radial-gradient(circle farthest-side, #698aab, #698aab 60%, transparent 60%, transparent);
+  background-size: 4px;
+  content: '';
+  display: inline-block;
+  height: 2px;
+  width: 100%;
+}
+
+.list-type-01__delete-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 4px;
+  border: 2px solid #698aab;
+  color: #698aab;
+  font-size: 1.176rem;
+  cursor: pointer;
 }

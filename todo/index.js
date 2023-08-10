@@ -25,12 +25,12 @@ const saveTasks = () => {
 const addAndSaveTask = (task) => {
   // タスクを表示
   const listItem = createElement('li', 'list-type-01__item');
-  const listText = createElement('span');
+  const listText = createElement('span', 'list-type-01__text');
   listText.innerHTML = task;
 
   // 削除ボタンを作成
-  const deleteBtn = createElement('button');
-  deleteBtn.innerHTML = '削除';
+  const deleteBtn = createElement('button','list-type-01__delete-button');
+  deleteBtn.innerHTML = '&times;';
   // 削除ボタンを押したときの処理
   deleteBtn.addEventListener('click', (event) => {
     event.preventDefault(); // ボタンのデフォルトの挙動をキャンセル
