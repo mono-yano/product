@@ -65,6 +65,7 @@ body {
   width: fit-content;
   gap: 8px;
   align-items: center;
+  cursor:pointer;
 }
 
 .list-type-01__text {

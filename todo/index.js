@@ -25,6 +25,7 @@ const saveTasks = () => {
 const addAndSaveTask = (task) => {
   // タスクを表示
   const listItem = createElement('li', 'list-type-01__item');
+  listItem.setAttribute('draggable', true);
   const listText = createElement('span', 'list-type-01__text');
   listText.innerHTML = task;
 

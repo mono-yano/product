@@ -27,5 +27,12 @@
       </div>
     </main>
 </div>
+<script src="https://raw.githack.com/SortableJS/Sortable/master/Sortable.js"></script>
+    <script>
+        var el = document.getElementById('taskList');
+        var sortable = Sortable.create(el, {
+            animation: 300
+        });
+    </script>
 </body>
 </html>
